@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: balance-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/balancing
+    username: balancing
+    password: balancing
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+server:
+  port: 8080

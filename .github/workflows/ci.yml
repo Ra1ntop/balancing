@@ -19,10 +19,7 @@ jobs:
   build:
     name: Build & Test
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: balance-core
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -40,6 +37,7 @@ jobs:
       - name: Build
         run: ./gradlew assemble --stacktrace
 
+      # Integration tests start a real Postgres through Testcontainers; the runner has Docker
       - name: Test
         run: ./gradlew test --stacktrace
 
@@ -48,6 +46,6 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: test-report
-          path: balance-core/build/reports/tests/test
+          path: '**/build/reports/tests/test'
           if-no-files-found: ignore
           retention-days: 7
