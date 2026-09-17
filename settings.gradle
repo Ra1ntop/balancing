@@ -1,0 +1,4 @@
+rootProject.name = 'balancing'
+
+include 'balance-core'
+include 'balance-api'
