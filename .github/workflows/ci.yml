@@ -7,7 +7,7 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
-# Отменяем предыдущие запуски на той же ветке/PR — не ждём устаревшие сборки
+# Cancel superseded runs on the same branch/PR instead of waiting for stale builds
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
